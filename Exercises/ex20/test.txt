@@ -1,0 +1,3 @@
+Username: 0Bug5
+Password: PlattdÃ¼Ã¼tsch
+Ip_address: 192.168.43.147
