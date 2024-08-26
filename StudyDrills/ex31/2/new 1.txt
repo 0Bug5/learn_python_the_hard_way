@@ -1,0 +1,71 @@
+mysql -u bugs -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 31
+Server version: 10.11.4-MariaDB-1 Debian 12
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| wordpress          |
++--------------------+
+2 rows in set (0.023 sec)
+
+MariaDB [(none)]> use wordpress;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [wordpress]> show tables;
++-----------------------+
+| Tables_in_wordpress   |
++-----------------------+
+| wp_commentmeta        |
+| wp_comments           |
+| wp_links              |
+| wp_options            |
+| wp_postmeta           |
+| wp_posts              |
+| wp_term_relationships |
+| wp_term_taxonomy      |
+| wp_termmeta           |
+| wp_terms              |
+| wp_usermeta           |
+| wp_users              |
++-----------------------+
+12 rows in set (0.001 sec)
+MariaDB [wordpress]> describe wp_users;
++---------------------+---------------------+------+-----+---------------------+----------------+
+| Field               | Type                | Null | Key | Default             | Extra          |
++---------------------+---------------------+------+-----+---------------------+----------------+
+| ID                  | bigint(20) unsigned | NO   | PRI | NULL                | auto_increment |
+| user_login          | varchar(60)         | NO   | MUL |                     |                |
+| user_pass           | varchar(255)        | NO   |     |                     |                |
+| user_nicename       | varchar(50)         | NO   | MUL |                     |                |
+| user_email          | varchar(100)        | NO   | MUL |                     |                |
+| user_url            | varchar(100)        | NO   |     |                     |                |
+| user_registered     | datetime            | NO   |     | 0000-00-00 00:00:00 |                |
+| user_activation_key | varchar(255)        | NO   |     |                     |                |
+| user_status         | int(11)             | NO   |     | 0                   |                |
+| display_name        | varchar(250)        | NO   |     |                     |                |
++---------------------+---------------------+------+-----+---------------------+----------------+
+10 rows in set (0.002 sec)
+
+MariaDB [wordpress]> select * from admin;
++------------+---------------------+------+-----+---------+----------------+
+| Field      | Type                | Null | Key | Default | Extra          |
++------------+---------------------+------+-----+---------+----------------+
+| umeta_id   | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+| user_id    | bigint(20) unsigned | NO   | MUL | 0       |                |
+| meta_key   | varchar(255)        | YES  | MUL | NULL    |                |
+| meta_value | longtext            | YES  |     | NULL    |                |
++------------+---------------------+------+-----+---------+----------------+
+
+MariaDB [wordpress]> exit
+Bye
